@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crunch – Order Fresh Food Any Time</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- ───────────── NAVBAR ───────────── -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="images/logo.png" alt="Crunch Logo" onerror="this.style.display='none'"/>
+        <span class="logo-text">🍔 Crunch</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#categories">Menu</a>
+        <a href="#restaurants">Restaurants</a>
+        <a href="#how">How It Works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn-location"><i class="fa fa-location-dot"></i> Select Location <i class="fa fa-chevron-down"></i></button>
+        <button class="btn-search-nav">Restaurant Search</button>
+      </div>
+      <div class="hamburger" id="hamburger"><i class="fa fa-bars"></i></div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home">Home</a>
+      <a href="#categories">Menu</a>
+      <a href="#restaurants">Restaurants</a>
+      <a href="#how">How It Works</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- ───────────── HERO ───────────── -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <img src="images/hero-bg.jpg" alt="Hero Background" class="hero-img"/>
+    <div class="hero-content">
+      <p class="hero-eyebrow">LEARN HOW TO MAKE</p>
+      <h1>Order Healthy and<br/>Fresh Food Any Time</h1>
+      <p class="hero-sub">Discover the best restaurants near you and get fresh, delicious meals delivered right to your door — fast and easy.</p>
+      <div class="search-bar">
+        <div class="search-field">
+          <label>Keyword</label>
+          <input type="text" placeholder="What are you looking for... eg (Pizza, Burger)"/>
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-field">
+          <label>Location</label>
+          <select>
+            <option value="">Select a Location</option>
+            <option>Bangalore</option>
+            <option>Mumbai</option>
+            <option>Delhi</option>
+            <option>Chennai</option>
+          </select>
+        </div>
+        <button class="btn-search">Search</button>
+      </div>
+    </div>
+    <div class="hero-food-img">
+      <img src="images/hero-food.png" alt="Delicious Burger"/>
+    </div>
+  </section>
+
+  <!-- ───────────── STATS ───────────── -->
+  <section class="stats">
+    <div class="stats-container">
+      <div class="stat-item">
+        <h3>500+</h3>
+        <p>Restaurants</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <h3>1200+</h3>
+        <p>Menu Items</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <h3>50K+</h3>
+        <p>Happy Customers</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <h3>30 Min</h3>
+        <p>Avg. Delivery</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── CATEGORIES ───────────── -->
+  <section class="categories" id="categories">
+    <div class="section-header">
+      <p class="section-eyebrow">TOP FOODS</p>
+      <h2>Our Categories</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="images/pizza.png" alt="Pizza"/>
+        </div>
+        <h4>Pizza</h4>
+        <p>14 Restaurant Products</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="images/broast.png" alt="Broast"/>
+        </div>
+        <h4>Broast</h4>
+        <p>4 Restaurant Products</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="images/chicken.png" alt="Chicken"/>
+        </div>
+        <h4>Chicken</h4>
+        <p>5 Restaurant Products</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="images/burger.png" alt="Burgers"/>
+        </div>
+        <h4>Burgers</h4>
+        <p>19 Restaurant Products</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="images/shakes.png" alt="Shakes"/>
+        </div>
+        <h4>Shakes</h4>
+        <p>22 Restaurant Products</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="images/sandwich.png" alt="Sandwiches"/>
+        </div>
+        <h4>Sandwiches</h4>
+        <p>6 Restaurant Products</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="images/pasta.png" alt="Pasta"/>
+        </div>
+        <h4>Pasta</h4>
+        <p>10 Restaurant Products</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="images/dessert.png" alt="Desserts"/>
+        </div>
+        <h4>Desserts</h4>
+        <p>15 Restaurant Products</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FEATURED RESTAURANTS ───────────── -->
+  <section class="restaurants" id="restaurants">
+    <div class="section-header">
+      <p class="section-eyebrow">TOP RESTAURANTS</p>
+      <h2>Most Featured Restaurants</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="restaurants-grid">
+      <div class="rest-card">
+        <div class="rest-img-wrap">
+          <img src="images/rest1.jpg" alt="The Burger House"/>
+          <span class="rest-badge"><i class="fa fa-star"></i> 4.8</span>
+        </div>
+        <div class="rest-info">
+          <h4>The Burger House</h4>
+          <p><i class="fa fa-location-dot"></i> Koramangala, Bangalore</p>
+          <div class="rest-meta">
+            <span><i class="fa fa-clock"></i> 25–30 min</span>
+            <span><i class="fa fa-motorcycle"></i> Free Delivery</span>
+          </div>
+          <button class="btn-order">Order Now</button>
+        </div>
+      </div>
+      <div class="rest-card">
+        <div class="rest-img-wrap">
+          <img src="images/rest2.jpg" alt="Pizza Palace"/>
+          <span class="rest-badge"><i class="fa fa-star"></i> 4.6</span>
+        </div>
+        <div class="rest-info">
+          <h4>Pizza Palace</h4>
+          <p><i class="fa fa-location-dot"></i> Indiranagar, Bangalore</p>
+          <div class="rest-meta">
+            <span><i class="fa fa-clock"></i> 30–40 min</span>
+            <span><i class="fa fa-motorcycle"></i> ₹30 Delivery</span>
+          </div>
+          <button class="btn-order">Order Now</button>
+        </div>
+      </div>
+      <div class="rest-card">
+        <div class="rest-img-wrap">
+          <img src="images/rest3.jpg" alt="Sushi Central"/>
+          <span class="rest-badge"><i class="fa fa-star"></i> 4.9</span>
+        </div>
+        <div class="rest-info">
+          <h4>Sushi Central</h4>
+          <p><i class="fa fa-location-dot"></i> HSR Layout, Bangalore</p>
+          <div class="rest-meta">
+            <span><i class="fa fa-clock"></i> 20–30 min</span>
+            <span><i class="fa fa-motorcycle"></i> Free Delivery</span>
+          </div>
+          <button class="btn-order">Order Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── HOW IT WORKS ───────────── -->
+  <section class="how" id="how">
+    <div class="section-header">
+      <p class="section-eyebrow">SIMPLE STEPS</p>
+      <h2>How It Works</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-icon"><i class="fa fa-magnifying-glass"></i></div>
+        <h4>Search Food</h4>
+        <p>Browse hundreds of restaurants and thousands of menu items near you.</p>
+      </div>
+      <div class="how-arrow"><i class="fa fa-arrow-right"></i></div>
+      <div class="how-card">
+        <div class="how-icon"><i class="fa fa-cart-shopping"></i></div>
+        <h4>Choose & Order</h4>
+        <p>Pick your favourite dishes and place your order in just a few taps.</p>
+      </div>
+      <div class="how-arrow"><i class="fa fa-arrow-right"></i></div>
+      <div class="how-card">
+        <div class="how-icon"><i class="fa fa-truck-fast"></i></div>
+        <h4>Fast Delivery</h4>
+        <p>Your meal is delivered fresh and hot right to your door in minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── APP DOWNLOAD ───────────── -->
+  <section class="app-section">
+    <div class="app-content">
+      <p class="section-eyebrow" style="text-align:left;">GET THE APP</p>
+      <h2>Download the Crunch App</h2>
+      <p>Order food on the go. Available on iOS and Android — track your order live and get exclusive app-only deals.</p>
+      <div class="app-btns">
+        <button class="app-btn"><i class="fab fa-apple"></i> App Store</button>
+        <button class="app-btn"><i class="fab fa-google-play"></i> Google Play</button>
+      </div>
+    </div>
+    <div class="app-img">
+      <img src="images/app-mockup.png" alt="Crunch App Mockup"/>
+    </div>
+  </section>
+
+  <!-- ───────────── FOOTER ───────────── -->
+  <footer class="footer" id="contact">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text" style="font-size:1.6rem; font-weight:800; color:#fff; margin-bottom:12px;">🍔 Crunch</div>
+        <p>Fresh food delivered fast. Your favourite meals from your favourite restaurants, at your doorstep.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">All Restaurants</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Categories</h5>
+        <a href="#">Pizza</a>
+        <a href="#">Burgers</a>
+        <a href="#">Pasta</a>
+        <a href="#">Sushi</a>
+        <a href="#">Desserts</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <p><i class="fa fa-location-dot"></i> 12 MG Road, Bangalore, India</p>
+        <p><i class="fa fa-phone"></i> +91 98765 43210</p>
+        <p><i class="fa fa-envelope"></i> hello@crunchfood.in</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Crunch. All rights reserved. Made with ❤️ in Bangalore.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
