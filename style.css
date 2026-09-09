@@ -227,8 +227,21 @@ img { max-width: 100%; }
   color: var(--text);
   font-size: 0.9rem;
   font-weight: 500;
-  padding: 4px 0;
-  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s var(--transition-smooth);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--yellow);
+  border-radius: 2px;
+  transition: width 0.3s var(--transition-smooth);
 }
 
 .nav-links a::after {
@@ -536,17 +549,21 @@ img { max-width: 100%; }
 .stat-item p { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
 .stat-divider { width: 1px; height: 50px; background: var(--border); }
 
-/* ── SECTION HEADER ────────────────────────────────────────────────── */
+/* ── SECTION HEADER (Enhanced by Student 2) ────────────────────────────────────────────────── */
 
 .section-header { text-align: center; margin-bottom: 44px; }
 
 .section-eyebrow {
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   color: var(--yellow);
   text-transform: uppercase;
   margin-bottom: 10px;
+  display: inline-block;
+  background: rgba(255, 193, 32, 0.08);
+  padding: 4px 16px;
+  border-radius: 20px;
 }
 
 .section-header h2 {
@@ -554,23 +571,20 @@ img { max-width: 100%; }
   font-weight: 800;
   color: var(--text);
   margin-bottom: 14px;
+  letter-spacing: -0.5px;
 }
 
 .underline {
   width: 48px; height: 3px;
   background: var(--yellow);
+  width: 56px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--yellow), var(--yellow-dark));
   margin: 0 auto;
   border-radius: 2px;
 }
 
-.section-note {
-  margin-top: 14px;
-  font-size: 0.88rem;
-  color: var(--text-muted);
-}
-
-/* ── 4. CATEGORIES ─────────────────────────────────────────────────── */
-
+/* ── CATEGORIES ── */
 .categories {
   padding: 80px 24px;
   max-width: 1200px;
@@ -594,39 +608,43 @@ img { max-width: 100%; }
   font-family: inherit;
   color: var(--text);
   cursor: pointer;
-  padding: 8px;
+  padding: 20px 12px;
   border-radius: var(--radius);
-  transition: transform 0.25s var(--ease);
+  transition: transform 0.35s var(--transition-smooth), box-shadow 0.35s var(--transition-smooth);
 }
 
-.cat-card:hover { transform: translateY(-6px); }
+.cat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+}
 
 .cat-img-wrap {
   width: 150px;
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 12px;
-  border: 3px solid var(--border);
-  background: var(--surface-3);
-  display: grid;
-  place-items: center;
-  transition: border-color 0.2s, box-shadow 0.25s var(--ease);
+  margin: 0 auto 16px;
+  border: 4px solid #f0f0f0;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s var(--transition-smooth), box-shadow 0.3s var(--transition-smooth);
 }
 
 .cat-card:hover .cat-img-wrap,
 .cat-card.is-active .cat-img-wrap {
   border-color: var(--yellow);
-  box-shadow: 0 0 0 6px var(--yellow-soft);
+  box-shadow: 0 0 0 8px var(--yellow-glow);
 }
 
 .cat-img-wrap img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.35s var(--ease);
+  transition: transform 0.4s var(--transition-smooth);
 }
 
-.cat-card:hover .cat-img-wrap img { transform: scale(1.09); }
+.cat-card:hover .cat-img-wrap img { transform: scale(1.1); }
 
 .cat-card__name { font-size: 1rem; font-weight: 700; }
 .cat-card__count { font-size: 0.8rem; color: var(--text-muted); }
@@ -745,8 +763,9 @@ img { max-width: 100%; }
 }
 
 .rest-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-top-color: var(--yellow);
 }
 
 .rest-img-wrap {
@@ -761,8 +780,7 @@ img { max-width: 100%; }
 .menu-head .storefront {
   width: 100%; height: 100%;
   object-fit: cover;
-  display: block;
-  transition: transform 0.4s var(--ease);
+  transition: transform 0.4s var(--transition-smooth);
 }
 
 /* The drawn shopfronts stand in for restaurants we have no genuine photo of. */
@@ -778,8 +796,9 @@ img { max-width: 100%; }
   color: #111;
   font-size: 0.78rem;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .rest-fav {
@@ -851,7 +870,8 @@ img { max-width: 100%; }
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s var(--ease);
+  letter-spacing: 0.3px;
+  transition: background 0.25s var(--transition-smooth), transform 0.2s var(--transition-smooth), box-shadow 0.25s var(--transition-smooth);
 }
 
 .btn-order:hover { background: var(--yellow-dark); transform: translateY(-2px); }
@@ -908,7 +928,7 @@ img { max-width: 100%; }
   width: 240px;
   box-shadow: var(--shadow);
   border: 2px solid transparent;
-  transition: border-color 0.2s, transform 0.25s var(--ease);
+  transition: border-color 0.3s var(--transition-smooth), transform 0.35s var(--transition-smooth), box-shadow 0.35s var(--transition-smooth);
 }
 
 .how-card:hover { border-color: var(--yellow); transform: translateY(-6px); }
