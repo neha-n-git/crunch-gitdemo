@@ -4,13 +4,16 @@
 :root {
   --yellow: #FFC120;
   --yellow-dark: #e6a800;
+  --yellow-glow: rgba(255, 193, 32, 0.25);
   --black: #111111;
   --dark: #1a1a1a;
   --gray: #666;
   --light-gray: #f5f5f5;
   --white: #ffffff;
-  --radius: 12px;
+  --radius: 14px;
   --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --shadow-hover: 0 16px 48px rgba(0,0,0,0.16);
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html { scroll-behavior: smooth; }
@@ -68,10 +71,25 @@ body {
   color: var(--black);
   font-size: 0.9rem;
   font-weight: 500;
-  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s var(--transition-smooth);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--yellow);
+  border-radius: 2px;
+  transition: width 0.3s var(--transition-smooth);
 }
 
 .nav-links a:hover { color: var(--yellow); }
+.nav-links a:hover::after { width: 100%; }
 
 .nav-actions {
   display: flex;
@@ -289,16 +307,20 @@ body {
 .stat-item p { font-size: 0.85rem; color: var(--gray); font-weight: 500; }
 .stat-divider { width: 1px; height: 50px; background: #eee; }
 
-/* ── SECTION HEADER ── */
+/* ── SECTION HEADER (Enhanced by Student 2) ── */
 .section-header { text-align: center; margin-bottom: 48px; }
 
 .section-eyebrow {
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   color: var(--yellow);
   text-transform: uppercase;
   margin-bottom: 10px;
+  display: inline-block;
+  background: rgba(255, 193, 32, 0.08);
+  padding: 4px 16px;
+  border-radius: 20px;
 }
 
 .section-header h2 {
@@ -306,14 +328,15 @@ body {
   font-weight: 800;
   color: var(--black);
   margin-bottom: 14px;
+  letter-spacing: -0.5px;
 }
 
 .underline {
-  width: 48px;
-  height: 3px;
-  background: var(--yellow);
+  width: 56px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--yellow), var(--yellow-dark));
   margin: 0 auto;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* ── CATEGORIES ── */
@@ -332,38 +355,43 @@ body {
 .cat-card {
   text-align: center;
   cursor: pointer;
-  transition: transform 0.25s;
+  padding: 20px 12px;
+  border-radius: var(--radius);
+  transition: transform 0.35s var(--transition-smooth), box-shadow 0.35s var(--transition-smooth);
 }
 
-.cat-card:hover { transform: translateY(-6px); }
+.cat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+}
 
 .cat-img-wrap {
   width: 160px;
   height: 160px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 14px;
-  border: 3px solid #f0f0f0;
+  margin: 0 auto 16px;
+  border: 4px solid #f0f0f0;
   background: #fafafa;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.3s var(--transition-smooth), box-shadow 0.3s var(--transition-smooth);
 }
 
 .cat-card:hover .cat-img-wrap {
   border-color: var(--yellow);
-  box-shadow: 0 0 0 6px rgba(255,193,32,0.15);
+  box-shadow: 0 0 0 8px var(--yellow-glow);
 }
 
 .cat-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform 0.4s var(--transition-smooth);
 }
 
-.cat-card:hover .cat-img-wrap img { transform: scale(1.08); }
+.cat-card:hover .cat-img-wrap img { transform: scale(1.1); }
 
 .cat-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
 .cat-card p { font-size: 0.8rem; color: var(--gray); }
@@ -389,17 +417,19 @@ body {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: transform 0.25s, box-shadow 0.25s;
+  border-top: 4px solid transparent;
+  transition: transform 0.35s var(--transition-smooth), box-shadow 0.35s var(--transition-smooth), border-color 0.35s var(--transition-smooth);
 }
 
 .rest-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.14);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-top-color: var(--yellow);
 }
 
 .rest-img-wrap {
   position: relative;
-  height: 200px;
+  height: 210px;
   overflow: hidden;
 }
 
@@ -407,10 +437,10 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform 0.4s var(--transition-smooth);
 }
 
-.rest-card:hover .rest-img-wrap img { transform: scale(1.05); }
+.rest-card:hover .rest-img-wrap img { transform: scale(1.06); }
 
 .rest-badge {
   position: absolute;
@@ -420,12 +450,13 @@ body {
   color: var(--black);
   font-size: 0.78rem;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-.rest-info { padding: 18px 20px; }
-.rest-info h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+.rest-info { padding: 20px 22px; }
+.rest-info h4 { font-size: 1.08rem; font-weight: 700; margin-bottom: 6px; }
 
 .rest-info > p {
   font-size: 0.82rem;
@@ -452,15 +483,20 @@ body {
   color: var(--black);
   border: none;
   border-radius: 8px;
-  padding: 11px;
+  padding: 12px;
   font-size: 0.88rem;
   font-weight: 700;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.3px;
+  transition: background 0.25s var(--transition-smooth), transform 0.2s var(--transition-smooth), box-shadow 0.25s var(--transition-smooth);
 }
 
-.btn-order:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+.btn-order:hover {
+  background: var(--yellow-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--yellow-glow);
+}
 
 /* ── HOW IT WORKS ── */
 .how {
@@ -485,12 +521,13 @@ body {
   width: 240px;
   box-shadow: var(--shadow);
   border: 2px solid transparent;
-  transition: border-color 0.2s, transform 0.25s;
+  transition: border-color 0.3s var(--transition-smooth), transform 0.35s var(--transition-smooth), box-shadow 0.35s var(--transition-smooth);
 }
 
 .how-card:hover {
   border-color: var(--yellow);
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
 }
 
 .how-icon {
