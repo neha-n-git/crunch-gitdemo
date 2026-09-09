@@ -1,97 +1,137 @@
 # Crunch
 
-Github Collaboration Demo — a food-ordering landing page built with vanilla
-HTML, CSS and JavaScript. No framework, no build step.
+**Order Healthy and Fresh Food Any Time**
+Discover the best restaurants near you and get fresh, delicious meals delivered right to your door — fast and easy.
 
-## Running it
+## Team Members
 
-The JavaScript ships as ES modules, which browsers refuse to load over
-`file://`. Serve the folder over HTTP:
+| Name | GitHub | Focus Area |
+|---|---|---|
+| Neha N | neha-n-git | Main branch integration, merge conflict resolution |
+| Abhishek Suresh | abhisheksuresh4 | UI / CSS, with some related JS |
+| Yanish Rai | GeekyYanish | JavaScript functionality, with some related CSS |
 
-```bash
-npm run dev          # python3 -m http.server 5173
+## Project Description
+
+Crunch is a food-ordering web app concept. Users can browse restaurants, view dishes across categories (burgers, pizza, pasta, chicken, desserts, sandwiches, shakes), search for what they want, add items to a cart, and place an order — all from a single-page interface.
+
+### Key Features (based on the app's module structure)
+
+- **Restaurant & menu browsing** — dish/restaurant data rendered dynamically onto the page
+- **Search** — finding restaurants or dishes by name/category
+- **Cart** — adding, removing, and reviewing items before ordering
+- **Navigation** — a responsive nav bar across sections of the site
+- **Animations** — hero section and scroll-based visual effects
+- **Hover/interaction polish** — card layouts, button styling, and hover effects added during the UI pass
+
+## Technologies Used
+
+- **HTML5** — page structure (`index.html`)
+- **CSS3** — styling and layout (`style.css`)
+- **JavaScript (vanilla, modular)** — application logic, split by responsibility:
+  - `js/data.js` — restaurant/menu data
+  - `js/store.js` — app/cart state management
+  - `js/render.js` — rendering menu and restaurant cards to the DOM
+  - `js/cart.js` — cart logic (add/remove/update items)
+  - `js/search.js` — search functionality
+  - `js/nav.js` — navigation bar behavior
+  - `js/ui.js` — general UI interactions
+  - `js/animations.js` — hero/scroll animations
+  - `js/main.js` — app entry point, ties modules together
+- **Git & GitHub** — version control, branching, and collaboration
+- `package.json` is present in the repo for project metadata (no build step is required to run the app)
+
+## Project Structure
+
+```
+crunch-gitdemo/
+├── index.html
+├── style.css
+├── package.json
+├── README.md
+├── UI-CHANGES.md
+├── images/
+│   ├── hero-bg.jpg, hero-food.png, app-mockup.png
+│   ├── burger.jpg, pizza.png, pasta.jpg, chicken.jpg,
+│   │   dessert.jpg, sandwich.jpg, shakes.jpg, broast.png
+│   └── rest1.jpg, rest2.jpg, rest3.jpg
+└── js/
+    ├── main.js
+    ├── data.js
+    ├── store.js
+    ├── render.js
+    ├── cart.js
+    ├── search.js
+    ├── nav.js
+    ├── ui.js
+    └── animations.js
 ```
 
-Then open <http://localhost:5173>. Any static server works — `npx serve`,
-`php -S localhost:5173`, the VS Code Live Server extension, and so on.
+## Git Branching Strategy
 
-## Layout
+We used a `main` branch as the integration point, with each teammate working on their own feature branch:
 
-```
-index.html        Markup. Category and restaurant sections carry a static
-                  fallback that JS replaces on boot (keeps the page useful
-                  without JS and gives crawlers real content).
-style.css         Single stylesheet, tokenised for light/dark themes.
-js/
-  data.js         Restaurants, menus, categories, testimonials.
-  store.js        Cart / favourites / theme state + localStorage.
-  ui.js           Toasts, overlays, focus trap, scroll lock, helpers.
-  render.js       Card and menu templates.
-  search.js       Keyword, city, category and sort filtering.
-  cart.js         Cart drawer, menu modal, checkout flow.
-  nav.js          Navbar, mobile menu, scrollspy, theme toggle.
-  animations.js   Scroll reveal, counters, carousel, parallax.
-  main.js         Bootstrap.
-images/           Photography and product art.
-```
+- **`main`** — the stable, integrated version of the site. All feature branches are merged here.
+- **`feat/yanish`** — Yanish's branch, focused on JavaScript functionality (cart logic, rendering, search, navigation), with related CSS tweaks as needed.
+- **`feature/ui`** — Abhishek's branch, focused on UI and CSS improvements (layout, cards, hover effects, animations, a `UI-CHANGES.md` doc), with related JS tweaks as needed.
 
-## What it does
+Workflow:
+1. Each teammate committed their work to their own feature branch.
+2. Neha fetched both branches into a local clone of `main`.
+3. `feat/yanish` was merged first (clean fast-forward).
+4. `feature/ui` was merged next — this is where conflicts came up, since both branches had touched `index.html` and `style.css`.
+5. Conflicts were resolved locally, committed, and pushed back to `origin/main`.
+6. `feature/ui` was later synced back up with `main` so both branches stayed consistent before final PRs were merged.
 
-- **Ordering** — browse a restaurant's menu, add dishes, adjust quantities,
-  and check out through an address form into an order confirmation with a
-  live ETA countdown and progress tracker.
-- **Cart persistence** — the cart and favourites survive a reload. Starting an
-  order at a second restaurant prompts before clearing the first.
-- **Search** — matches restaurant names, areas, cuisines *and* dish names, so
-  searching `tiramisu` finds the place that serves it. Combines with city,
-  category and sort filters, each removable as a chip.
-- **Dark mode** — follows the OS by default, overridable, and remembered.
-- **Accessibility** — focus trapping in the drawer and modals, Escape to
-  close, focus restored to the trigger, `aria-*` state on every toggle,
-  visible focus rings, and a skip link.
-- **Motion** — scroll reveals, animated counters and a testimonial carousel,
-  all disabled under `prefers-reduced-motion: reduce`.
+## Pull Requests Created
 
-## Data and provenance
+| # | Title | Author | Status |
+|---|---|---|---|
+| 1 | Feature/UI | abhisheksuresh4 | Merged |
+| 2 | New PR | abhisheksuresh4 | Merged |
+| 3 | Fixed the merge conflict in style css | GeekyYanish | Merged |
 
-Content lives in `js/data.js`. Adding a restaurant or dish there is enough — the
-cards, category counts, menus and search index all derive from it.
+*(See repository Pull Requests tab for full diffs and review history.)*
 
-**The restaurants and their signature dishes are real** — Truffles, Meghana
-Foods, Bademiya, Karim's, Moti Mahal, Buhari and the rest, each paired with the
-dish it is actually known for.
+## Merge Conflicts (Major)
 
-**Everything numeric is invented.** Ratings, review counts, prices, delivery
-times and the customer testimonials are illustrative sample data for this demo,
-not claims about these businesses. The footer says so on the page itself.
+Because `feat/yanish` and `feature/ui` were developed independently and both touched shared files, several conflicts came up at different points in the workflow.
 
-### Restaurant storefronts
+### Conflict 1 — merging `feature/ui` into `main`
 
-Seven restaurants have a genuine Commons photograph of the actual premises
-(Koshy's, Bademiya, Pizza By The Bay, Buhari, Karim's, Toit, Moti Mahal). For
-the other eleven no such photo exists, so `js/render.js` draws an SVG shopfront
-carrying that restaurant's own name.
+**What caused it:** Both `main` (already updated with `feat/yanish`'s changes) and `feature/ui` had modified overlapping sections of `index.html` and `style.css` — layout markup and styling rules had diverged.
 
-That is deliberate. Commons storefront photography is almost always *of a
-specific named business* — the nearest matches were things like "Cactus Club
-Cafe" and "India Palace", and using one as another restaurant's frontage would
-put a different company's signage on the card. A drawing that says the right
-name is more honest than a photograph of the wrong building.
+**How it was resolved:** The conflicted files were opened, the `<<<<<<<` / `=======` / `>>>>>>>` markers were reviewed line by line, and both sets of changes were combined rather than one side being discarded. The merge was completed with `git add .` and `git commit -m "Merged updated css and js after resolving conflicts"`, then pushed to `origin/main`.
 
-### Photography
+Screenshots: https://docs.google.com/document/d/1RY2TKCWVCwsQuvslMzmByIwB9VjSjtWOcUvueAjiv0g/edit?usp=sharing
 
-Dish photos are hotlinked from [Wikimedia Commons](https://commons.wikimedia.org/)
-at `upload.wikimedia.org`, so they add nothing to the repository. Each carries
-its author and licence in `credit`, surfaced by the **Photo credits** panel in
-the footer — most are CC BY-SA, which requires that attribution.
+### Conflict 2 — syncing `feature/ui` with the latest `main`
 
-Two consequences worth knowing:
+**What caused it:** After `main` moved ahead, pulling those updates into the local `feature/ui` branch conflicted again on `index.html` and `style.css`. It also produced a modify/delete conflict on `script.js`: it had been removed on one side (its logic had been reorganized into the `js/` folder) but still modified on the other.
 
-- The photos need an internet connection. If one ever stops resolving, a single
-  delegated `error` listener in `js/ui.js` swaps in the local category image, so
-  a dead link degrades to the right-looking picture rather than a broken icon.
-- Wikimedia rate-limits bursts from one IP. Normal browsing is far below the
-  limit, but scripted checks over every URL at once will get `429`s — pace them.
+**How it was resolved:** The HTML/CSS conflicts were merged manually as before. For `script.js`, since its functionality had already moved into the modular `js/` files, it was removed with `git rm script.js` rather than restored. The merge was finalized with `git commit -m "Resolve merge conflicts - remove obsolete script.js"` and pushed to `origin/feature/ui`.
 
-To vendor the images instead, download each `img` URL into `images/dishes/` and
-rewrite the fields; nothing else changes.
+Screenshots: https://docs.google.com/document/d/1RY2TKCWVCwsQuvslMzmByIwB9VjSjtWOcUvueAjiv0g/edit?usp=sharing
+
+### Conflict 3 — resolved on `feat/yanish`'s side
+
+Yanish also resolved a conflict on his end (PR #3, "Fixed the merge conflict in style css") before that branch was merged in.
+
+Screenshots: https://docs.google.com/document/d/1RY2TKCWVCwsQuvslMzmByIwB9VjSjtWOcUvueAjiv0g/edit?usp=sharing
+
+## Individual Contributions
+
+PFA Contribution: https://docs.google.com/document/d/1RY2TKCWVCwsQuvslMzmByIwB9VjSjtWOcUvueAjiv0g/edit?usp=sharing
+
+- **Neha N:** Initial website source code, resolving merge conflicts and PR requests
+- **Abhishek Suresh:** Edits in CSS source code and relevant js, Resolving PR requests and conflicts
+- **Yanish Rai:** Edits in JS source code and relevant js, Resolving PR requests and conflicts
+
+## How to Run the Application
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/neha-n-git/crunch-gitdemo.git
+   ```
+2. Open the project folder.
+3. Open `index.html` directly in your browser — no build step or server required.
