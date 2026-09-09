@@ -10,6 +10,77 @@ const fallbackFor = (category) => CATEGORY_IMG[category] || 'images/burger.jpg';
 /** A restaurant's fallback follows its first cuisine. */
 const restFallback = (r) => fallbackFor(r.cuisines[0]);
 
+/* ── Storefront ───────────────────────────────────────────────────── */
+
+/** Stable 0-359 hue from a string, so each shopfront keeps its own colour. */
+function hueOf(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 360;
+  return h;
+}
+
+/**
+ * Drawn shopfront for restaurants we have no genuine photo of.
+ *
+ * Deliberately an illustration rather than a stock photo of some other
+ * building: it shows a storefront carrying this restaurant's own name without
+ * passing another business's premises off as theirs.
+ */
+function storefront(r) {
+  const hue = hueOf(r.id);
+  const wall = `hsl(${hue} 30% 26%)`;
+  const wallDark = `hsl(${hue} 32% 18%)`;
+  const trim = `hsl(${hue} 38% 34%)`;
+  const name = escapeHTML(r.name.toUpperCase());
+  // Long names need to shrink to stay inside the signboard.
+  const size = r.name.length > 20 ? 30 : r.name.length > 14 ? 36 : 44;
+  const id = `sf-${r.id}`;
+
+  return `
+    <svg class="storefront" viewBox="0 0 800 450" role="img"
+         aria-label="Illustrated storefront for ${escapeHTML(r.name)}" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="${id}-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="${wallDark}"/><stop offset="1" stop-color="${wall}"/>
+        </linearGradient>
+        <linearGradient id="${id}-glow" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FFC120" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#FFC120" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <rect width="800" height="450" fill="url(#${id}-sky)"/>
+      <rect y="300" width="800" height="150" fill="${wallDark}"/>
+
+      <!-- signboard -->
+      <rect x="80" y="52" width="640" height="86" rx="8" fill="${trim}"/>
+      <rect x="92" y="64" width="616" height="62" rx="4" fill="${wallDark}"/>
+      <text x="400" y="105" text-anchor="middle" fill="#FFC120"
+            font-family="Poppins, system-ui, sans-serif" font-weight="800"
+            font-size="${size}" letter-spacing="1.5">${name}</text>
+
+      <!-- striped awning -->
+      <g>
+        <path d="M60 150 H740 L770 224 H30 Z" fill="#FFC120"/>
+        ${Array.from({ length: 8 }, (_, i) =>
+          `<path d="M${60 + i * 85} 150 H${103 + i * 85} L${76 + i * 85} 224 H${33 + i * 85} Z" fill="#111" opacity=".14"/>`
+        ).join('')}
+        <path d="M30 224 H770 V236 H30 Z" fill="${trim}"/>
+      </g>
+
+      <!-- windows and door, warm light spilling out -->
+      <rect x="70" y="262" width="200" height="150" rx="6" fill="#1b1b1f"/>
+      <rect x="82" y="274" width="176" height="126" rx="4" fill="#FFC120" opacity=".18"/>
+      <rect x="530" y="262" width="200" height="150" rx="6" fill="#1b1b1f"/>
+      <rect x="542" y="274" width="176" height="126" rx="4" fill="#FFC120" opacity=".18"/>
+      <rect x="320" y="250" width="160" height="200" rx="8" fill="#15151a"/>
+      <rect x="332" y="262" width="136" height="176" rx="5" fill="#FFC120" opacity=".26"/>
+      <circle cx="452" cy="352" r="6" fill="#FFC120"/>
+      <rect x="300" y="430" width="200" height="20" rx="4" fill="${trim}"/>
+      <rect x="240" y="236" width="320" height="120" fill="url(#${id}-glow)" opacity=".5"/>
+    </svg>`;
+}
+
 const stars = (rating) => {
   const full = Math.floor(rating);
   const half = rating - full >= 0.5;
@@ -48,9 +119,11 @@ export function restaurantCard(r, index = 0) {
   return `
     <article class="rest-card reveal" style="--i:${index}" data-restaurant="${r.id}">
       <div class="rest-img-wrap">
-        <img src="${r.img}" alt="${escapeHTML(r.signature || r.name)}" width="800" height="450"
-             loading="lazy" decoding="async" referrerpolicy="no-referrer"
-             data-fallback="${restFallback(r)}"/>
+        ${r.exterior === 'photo'
+          ? `<img src="${r.img}" alt="${escapeHTML(r.name)} storefront" width="800" height="450"
+                  loading="lazy" decoding="async" referrerpolicy="no-referrer"
+                  data-fallback="${restFallback(r)}"/>`
+          : storefront(r)}
         <span class="rest-badge"><i class="fa fa-star"></i> ${r.rating.toFixed(1)}</span>
         <button class="rest-fav ${fav ? 'is-active' : ''}" type="button"
                 data-fav="${r.id}" aria-pressed="${fav}"
@@ -112,8 +185,10 @@ export function renderEmptyState(container, keyword) {
 export function menuMarkup(r) {
   return `
     <header class="menu-head">
-      <img src="${r.img}" alt="" width="800" height="450" loading="lazy" decoding="async"
-           referrerpolicy="no-referrer" data-fallback="${restFallback(r)}"/>
+      ${r.exterior === 'photo'
+        ? `<img src="${r.img}" alt="" width="800" height="450" loading="lazy" decoding="async"
+                referrerpolicy="no-referrer" data-fallback="${restFallback(r)}"/>`
+        : storefront(r)}
       <div class="menu-head__body">
         <h3 id="menuTitle">${escapeHTML(r.name)}</h3>
         <p class="menu-head__meta">

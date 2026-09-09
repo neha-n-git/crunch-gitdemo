@@ -42,8 +42,8 @@ export const RESTAURANTS = [
     deliveryFee: 0,
     priceForTwo: 700,
     signature: 'Ultimate Chicken Cheese Burger',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Cheeseburger_with_onions_at_Hatfield_Heath_Festival_2017.jpg/500px-Cheeseburger_with_onions_at_Hatfield_Heath_Festival_2017.jpg',
-    credit: { author: 'Acabashi', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Cheeseburger_with_onions_at_Hatfield_Heath_Festival_2017.jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['burgers', 'sandwiches', 'shakes', 'pasta'],
     menu: [
       {
@@ -109,8 +109,8 @@ export const RESTAURANTS = [
     deliveryFee: 0,
     priceForTwo: 400,
     signature: 'Death by Chocolate',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Strawberry_Ice_Cream_Sundae_%2826853326784%29.jpg/500px-Strawberry_Ice_Cream_Sundae_%2826853326784%29.jpg',
-    credit: { author: 'Sam Howzit', license: 'CC BY 2.0', page: 'https://commons.wikimedia.org/wiki/File:Strawberry_Ice_Cream_Sundae_(26853326784).jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['desserts', 'shakes'],
     menu: [
       {
@@ -166,8 +166,8 @@ export const RESTAURANTS = [
     deliveryFee: 0,
     priceForTwo: 800,
     signature: 'Boneless Chicken Biryani',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/A_home_made_plate_of_mutton_biryani_served_with_chicken_kassa_cooked_in_the_bengali_style.jpg/500px-A_home_made_plate_of_mutton_biryani_served_with_chicken_kassa_cooked_in_the_bengali_style.jpg',
-    credit: { author: 'Subhrajyoti07', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:A_home_made_plate_of_mutton_biryani_served_with_chicken_kassa_cooked_in_the_bengali_style.jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['chicken'],
     menu: [
       {
@@ -223,8 +223,9 @@ export const RESTAURANTS = [
     deliveryFee: 49,
     priceForTwo: 1600,
     signature: 'Wood-fired Pizza',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Wood-fired_Pizza_Oven_at_Baronessa_Italian_Restaurant.jpg/500px-Wood-fired_Pizza_Oven_at_Baronessa_Italian_Restaurant.jpg',
-    credit: { author: 'Zacatillo1', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Wood-fired_Pizza_Oven_at_Baronessa_Italian_Restaurant.jpg' },
+    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Toit_Brewpub%2C_Bengaluru_01.jpg/960px-Toit_Brewpub%2C_Bengaluru_01.jpg',
+    credit: { author: 'Slyronit', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Toit_Brewpub,_Bengaluru_01.jpg' },
+    exterior: 'photo',
     cuisines: ['pizza', 'burgers'],
     menu: [
       {
@@ -270,8 +271,9 @@ export const RESTAURANTS = [
     deliveryFee: 39,
     priceForTwo: 600,
     signature: 'Club Sandwich',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/City_Centre_Club_Sandwich_for_room_service_at_Holiday_Inn_Qingdao_City_Centre_%2820191004082448%29.jpg/500px-City_Centre_Club_Sandwich_for_room_service_at_Holiday_Inn_Qingdao_City_Centre_%2820191004082448%29.jpg',
-    credit: { author: 'N509FZ', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:City_Centre_Club_Sandwich_for_room_service_at_Holiday_Inn_Qingdao_City_Centre_(20191004082448).jpg' },
+    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Koshys.jpg/960px-Koshys.jpg',
+    credit: { author: 'Atr hugo', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Koshys.jpg' },
+    exterior: 'photo',
     cuisines: ['sandwiches', 'chicken'],
     menu: [
       {
@@ -317,8 +319,9 @@ export const RESTAURANTS = [
     deliveryFee: 0,
     priceForTwo: 600,
     signature: 'Seekh Kebab Roll',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Seekh_Kebab.JPG/500px-Seekh_Kebab.JPG',
-    credit: { author: 'raasiel', license: 'CC BY 2.0', page: 'https://commons.wikimedia.org/wiki/File:Seekh_Kebab.JPG' },
+    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Bademiya_restaurant%2C_Mumbai.jpg/960px-Bademiya_restaurant%2C_Mumbai.jpg',
+    credit: { author: 'Benjamin Vander Steen from Victoria, Canada', license: 'CC BY 2.0', page: 'https://commons.wikimedia.org/wiki/File:Bademiya_restaurant,_Mumbai.jpg' },
+    exterior: 'photo',
     cuisines: ['chicken', 'sandwiches'],
     menu: [
       {
@@ -374,8 +377,8 @@ export const RESTAURANTS = [
     deliveryFee: 0,
     priceForTwo: 350,
     signature: 'Mumbaiya Grilled Sandwich',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Bombay_cheese_sandwich.jpg/500px-Bombay_cheese_sandwich.jpg',
-    credit: { author: 'Wind Hashira', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Bombay_cheese_sandwich.jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['sandwiches', 'shakes'],
     menu: [
       {
@@ -441,8 +444,9 @@ export const RESTAURANTS = [
     deliveryFee: 49,
     priceForTwo: 1800,
     signature: 'Quattro Formaggi',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Piante_Margherita_Pizza_Slice.jpg/500px-Piante_Margherita_Pizza_Slice.jpg',
-    credit: { author: 'Aspensmonster', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Piante_Margherita_Pizza_Slice.jpg' },
+    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Pizza_by_the_Bay_and_Soona_Mahal%2C_Marine_Drive%2C_Mumbai.jpg/960px-Pizza_by_the_Bay_and_Soona_Mahal%2C_Marine_Drive%2C_Mumbai.jpg',
+    credit: { author: 'DesiBoy101', license: 'CC BY 4.0', page: 'https://commons.wikimedia.org/wiki/File:Pizza_by_the_Bay_and_Soona_Mahal,_Marine_Drive,_Mumbai.jpg' },
+    exterior: 'photo',
     cuisines: ['pizza', 'pasta', 'desserts'],
     menu: [
       {
@@ -508,8 +512,8 @@ export const RESTAURANTS = [
     deliveryFee: 0,
     priceForTwo: 500,
     signature: 'Chocolate Brownie',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Chocolate-brownie-hachatw.jpg/500px-Chocolate-brownie-hachatw.jpg',
-    credit: { author: 'JefferySAC', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Chocolate-brownie-hachatw.jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['desserts', 'sandwiches'],
     menu: [
       {
@@ -565,8 +569,8 @@ export const RESTAURANTS = [
     deliveryFee: 29,
     priceForTwo: 250,
     signature: 'Ice Cream Sandwich',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Chipwich_ice_cream_sandwich.jpg/500px-Chipwich_ice_cream_sandwich.jpg',
-    credit: { author: 'Crave Better Foods, LLC, copyright owner of The Original Chi', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Chipwich_ice_cream_sandwich.jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['desserts'],
     menu: [
       {
@@ -612,8 +616,9 @@ export const RESTAURANTS = [
     deliveryFee: 0,
     priceForTwo: 700,
     signature: 'Mutton Burra',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Kebab_platter.JPG/500px-Kebab_platter.JPG',
-    credit: { author: 'Deboli Dutta', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Kebab_platter.JPG' },
+    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Karim%27s_Hotel%2C_Old_Delhi.jpg/960px-Karim%27s_Hotel%2C_Old_Delhi.jpg',
+    credit: { author: 'Edmund Gall', license: 'CC BY-SA 2.0', page: 'https://commons.wikimedia.org/wiki/File:Karim%27s_Hotel,_Old_Delhi.jpg' },
+    exterior: 'photo',
     cuisines: ['chicken'],
     menu: [
       {
@@ -669,8 +674,9 @@ export const RESTAURANTS = [
     deliveryFee: 39,
     priceForTwo: 900,
     signature: 'Butter Chicken',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Chicken_makhani.jpg/500px-Chicken_makhani.jpg',
-    credit: { author: 'stu_spivack', license: 'CC BY-SA 2.0', page: 'https://commons.wikimedia.org/wiki/File:Chicken_makhani.jpg' },
+    img: 'https://upload.wikimedia.org/wikipedia/commons/7/75/Kundan_Lal_Jaggi_at_First_Moti_Mahal.jpg',
+    credit: { author: 'Amitbagga1923', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Kundan_Lal_Jaggi_at_First_Moti_Mahal.jpg' },
+    exterior: 'photo',
     cuisines: ['chicken'],
     menu: [
       {
@@ -726,8 +732,8 @@ export const RESTAURANTS = [
     deliveryFee: 39,
     priceForTwo: 400,
     signature: 'Black Forest Pastry',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Black_Forest_gateau.jpg/500px-Black_Forest_gateau.jpg',
-    credit: { author: 'Mikelo', license: 'CC BY-SA 2.0', page: 'https://commons.wikimedia.org/wiki/File:Black_Forest_gateau.jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['desserts', 'sandwiches'],
     menu: [
       {
@@ -783,8 +789,8 @@ export const RESTAURANTS = [
     deliveryFee: 29,
     priceForTwo: 450,
     signature: 'Amritsari Murg Burger',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Chicken_Caesar_Burger_-_Leon_2024-10-27.jpg/500px-Chicken_Caesar_Burger_-_Leon_2024-10-27.jpg',
-    credit: { author: 'Andy Li', license: 'CC0', page: 'https://commons.wikimedia.org/wiki/File:Chicken_Caesar_Burger_-_Leon_2024-10-27.jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['burgers', 'shakes'],
     menu: [
       {
@@ -840,8 +846,8 @@ export const RESTAURANTS = [
     deliveryFee: 79,
     priceForTwo: 3500,
     signature: 'Truffle Ravioli',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Liat_Portal_for_Foodie_Disorder_-_Ravioli_with_mushrooms_and_spinach_in_cream_sauce.jpg/500px-Liat_Portal_for_Foodie_Disorder_-_Ravioli_with_mushrooms_and_spinach_in_cream_sauce.jpg',
-    credit: { author: 'HaJunkiyada', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Liat_Portal_for_Foodie_Disorder_-_Ravioli_with_mushrooms_and_spinach_in_cream_sauce.jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['pasta', 'pizza', 'desserts'],
     menu: [
       {
@@ -897,8 +903,9 @@ export const RESTAURANTS = [
     deliveryFee: 0,
     priceForTwo: 500,
     signature: 'Chicken 65',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Kolkata_mutton_biryani.jpg/500px-Kolkata_mutton_biryani.jpg',
-    credit: { author: 'DeepanjanGhosh', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Kolkata_mutton_biryani.jpg' },
+    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Hotel_Buhari_Mount_Road_night_%281%29.jpg/960px-Hotel_Buhari_Mount_Road_night_%281%29.jpg',
+    credit: { author: 'SnapMeUp', license: 'CC BY-SA 4.0', page: 'https://commons.wikimedia.org/wiki/File:Hotel_Buhari_Mount_Road_night_(1).jpg' },
+    exterior: 'photo',
     cuisines: ['chicken'],
     menu: [
       {
@@ -954,8 +961,8 @@ export const RESTAURANTS = [
     deliveryFee: 0,
     priceForTwo: 600,
     signature: 'Classic Chicken Broast',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Fried-Chicken-Set.jpg/500px-Fried-Chicken-Set.jpg',
-    credit: { author: 'Evan-Amos', license: 'CC0', page: 'https://commons.wikimedia.org/wiki/File:Fried-Chicken-Set.jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['broast', 'burgers'],
     menu: [
       {
@@ -1011,8 +1018,8 @@ export const RESTAURANTS = [
     deliveryFee: 29,
     priceForTwo: 500,
     signature: 'Signature Broast',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Fried_chicken_legs%2C_Rostov-on-Don%2C_Russia.jpg/500px-Fried_chicken_legs%2C_Rostov-on-Don%2C_Russia.jpg',
-    credit: { author: 'Vyacheslav Argenberg', license: 'CC BY 4.0', page: 'https://commons.wikimedia.org/wiki/File:Fried_chicken_legs,_Rostov-on-Don,_Russia.jpg' },
+    img: null,
+    exterior: 'illustration',
     cuisines: ['broast', 'chicken'],
     menu: [
       {
@@ -1101,7 +1108,7 @@ export const IMAGE_CREDITS = (() => {
     if (c?.page && !seen.has(c.page)) seen.set(c.page, { label, ...c });
   };
   for (const r of RESTAURANTS) {
-    add(r.name, r.credit);
+    if (r.credit) add(r.name, r.credit);
     for (const d of r.menu) add(d.name, d.credit);
   }
   return [...seen.values()].sort((a, b) => a.label.localeCompare(b.label));

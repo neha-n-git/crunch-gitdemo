@@ -65,6 +65,19 @@ dish it is actually known for.
 times and the customer testimonials are illustrative sample data for this demo,
 not claims about these businesses. The footer says so on the page itself.
 
+### Restaurant storefronts
+
+Seven restaurants have a genuine Commons photograph of the actual premises
+(Koshy's, Bademiya, Pizza By The Bay, Buhari, Karim's, Toit, Moti Mahal). For
+the other eleven no such photo exists, so `js/render.js` draws an SVG shopfront
+carrying that restaurant's own name.
+
+That is deliberate. Commons storefront photography is almost always *of a
+specific named business* — the nearest matches were things like "Cactus Club
+Cafe" and "India Palace", and using one as another restaurant's frontage would
+put a different company's signage on the card. A drawing that says the right
+name is more honest than a photograph of the wrong building.
+
 ### Photography
 
 Dish photos are hotlinked from [Wikimedia Commons](https://commons.wikimedia.org/)
