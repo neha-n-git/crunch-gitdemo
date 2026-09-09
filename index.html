@@ -3,94 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Crunch — order fresh food from the best restaurants near you. Live tracking, free delivery and exclusive deals."/>
+  <meta name="theme-color" content="#FFC120"/>
   <title>Crunch – Order Fresh Food Any Time</title>
-  <link rel="stylesheet" href="style.css"/>
+
+  <script>
+    /* Runs before first paint: marks JS as available (so reveal animations may
+       hide content) and applies the stored theme to avoid a flash of the wrong one. */
+    (function () {
+      var el = document.documentElement;
+      el.classList.add('js');
+      try {
+        var saved = localStorage.getItem('crunch:theme');
+        el.dataset.theme = (saved === 'dark' || saved === 'light') ? saved
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) {
+        el.dataset.theme = 'light';
+      }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- ───────────── NAVBAR ───────────── -->
   <header class="navbar">
     <div class="nav-container">
-      <div class="logo">
-        <img src="images/logo.png" alt="Crunch Logo" onerror="this.style.display='none'"/>
+      <a class="logo" href="#home">
         <span class="logo-text">🍔 Crunch</span>
-      </div>
-      <nav class="nav-links">
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
         <a href="#home">Home</a>
         <a href="#categories">Menu</a>
         <a href="#restaurants">Restaurants</a>
         <a href="#how">How It Works</a>
         <a href="#contact">Contact</a>
       </nav>
+
       <div class="nav-actions">
-        <button class="btn-location"><i class="fa fa-location-dot"></i> Select Location <i class="fa fa-chevron-down"></i></button>
-        <button class="btn-search-nav">Restaurant Search</button>
+        <button class="btn-location" id="locationBtn" type="button">
+          <i class="fa fa-location-dot" aria-hidden="true"></i>
+          <span class="btn-location__label">Select Location</span>
+          <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        </button>
+
+        <button class="icon-btn" id="themeToggle" type="button"
+                aria-pressed="false" aria-label="Switch to dark theme">
+          <i class="fa fa-moon" aria-hidden="true"></i>
+        </button>
+
+        <button class="icon-btn icon-btn--cart" id="cartTrigger" type="button" aria-label="Open cart">
+          <i class="fa fa-basket-shopping" aria-hidden="true"></i>
+          <span class="cart-badge" id="cartBadge" hidden>0</span>
+        </button>
       </div>
-      <div class="hamburger" id="hamburger"><i class="fa fa-bars"></i></div>
+
+      <button class="hamburger" id="hamburger" type="button"
+              aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle navigation menu">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
     </div>
-    <div class="mobile-menu" id="mobileMenu">
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
       <a href="#home">Home</a>
       <a href="#categories">Menu</a>
       <a href="#restaurants">Restaurants</a>
       <a href="#how">How It Works</a>
       <a href="#contact">Contact</a>
-    </div>
+    </nav>
   </header>
+
+  <main id="main">
 
   <!-- ───────────── HERO ───────────── -->
   <section class="hero" id="home">
+    <img src="images/hero-bg.jpg" alt="" class="hero-img" width="960" height="549"
+         fetchpriority="high" decoding="async"/>
     <div class="hero-overlay"></div>
-    <img src="images/hero-bg.jpg" alt="Hero Background" class="hero-img"/>
+
     <div class="hero-content">
-      <p class="hero-eyebrow">LEARN HOW TO MAKE</p>
+      <p class="hero-eyebrow">FRESH · FAST · LOCAL</p>
       <h1>Order Healthy and<br/>Fresh Food Any Time</h1>
       <p class="hero-sub">Discover the best restaurants near you and get fresh, delicious meals delivered right to your door — fast and easy.</p>
-      <div class="search-bar">
+
+      <form class="search-bar" id="heroSearchForm" role="search">
         <div class="search-field">
-          <label>Keyword</label>
-          <input type="text" placeholder="What are you looking for... eg (Pizza, Burger)"/>
+          <label for="heroKeyword">Keyword</label>
+          <input type="text" id="heroKeyword" name="keyword" autocomplete="off"
+                 placeholder="Try “pizza”, “tiramisu”, “burger”…"/>
         </div>
         <div class="search-divider"></div>
         <div class="search-field">
-          <label>Location</label>
-          <select>
-            <option value="">Select a Location</option>
+          <label for="heroCity">Location</label>
+          <select id="heroCity" name="city">
+            <option value="">All locations</option>
             <option>Bangalore</option>
-            <option>Mumbai</option>
-            <option>Delhi</option>
             <option>Chennai</option>
+            <option>Delhi</option>
+            <option>Hyderabad</option>
+            <option>Mumbai</option>
           </select>
         </div>
-        <button class="btn-search">Search</button>
-      </div>
+        <button class="btn-search" type="submit">
+          <i class="fa fa-magnifying-glass" aria-hidden="true"></i>
+          <span>Search</span>
+        </button>
+      </form>
     </div>
+
     <div class="hero-food-img">
-      <img src="images/hero-food.png" alt="Delicious Burger"/>
+      <img src="images/hero-food.png" alt="" width="800" height="800" fetchpriority="high" decoding="async"/>
     </div>
   </section>
 
   <!-- ───────────── STATS ───────────── -->
-  <section class="stats">
+  <section class="stats" aria-label="Crunch by the numbers">
     <div class="stats-container">
-      <div class="stat-item">
-        <h3>500+</h3>
+      <div class="stat-item reveal" style="--i:0">
+        <h3 data-count="500" data-suffix="+">500+</h3>
         <p>Restaurants</p>
       </div>
       <div class="stat-divider"></div>
-      <div class="stat-item">
-        <h3>1200+</h3>
+      <div class="stat-item reveal" style="--i:1">
+        <h3 data-count="1200" data-suffix="+">1200+</h3>
         <p>Menu Items</p>
       </div>
       <div class="stat-divider"></div>
-      <div class="stat-item">
-        <h3>50K+</h3>
+      <div class="stat-item reveal" style="--i:2">
+        <h3 data-count="50000" data-compact="true" data-suffix="+">50K+</h3>
         <p>Happy Customers</p>
       </div>
       <div class="stat-divider"></div>
-      <div class="stat-item">
-        <h3>30 Min</h3>
+      <div class="stat-item reveal" style="--i:3">
+        <h3 data-count="30" data-suffix=" Min">30 Min</h3>
         <p>Avg. Delivery</p>
       </div>
     </div>
@@ -102,120 +156,103 @@
       <p class="section-eyebrow">TOP FOODS</p>
       <h2>Our Categories</h2>
       <div class="underline"></div>
+      <p class="section-note">Pick a category to filter the restaurants below.</p>
     </div>
-    <div class="categories-grid">
-      <div class="cat-card">
-        <div class="cat-img-wrap">
-          <img src="images/pizza.png" alt="Pizza"/>
-        </div>
-        <h4>Pizza</h4>
-        <p>14 Restaurant Products</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-img-wrap">
-          <img src="images/broast.png" alt="Broast"/>
-        </div>
-        <h4>Broast</h4>
-        <p>4 Restaurant Products</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-img-wrap">
-          <img src="images/chicken.png" alt="Chicken"/>
-        </div>
-        <h4>Chicken</h4>
-        <p>5 Restaurant Products</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-img-wrap">
-          <img src="images/burger.png" alt="Burgers"/>
-        </div>
-        <h4>Burgers</h4>
-        <p>19 Restaurant Products</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-img-wrap">
-          <img src="images/shakes.png" alt="Shakes"/>
-        </div>
-        <h4>Shakes</h4>
-        <p>22 Restaurant Products</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-img-wrap">
-          <img src="images/sandwich.png" alt="Sandwiches"/>
-        </div>
-        <h4>Sandwiches</h4>
-        <p>6 Restaurant Products</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-img-wrap">
-          <img src="images/pasta.png" alt="Pasta"/>
-        </div>
-        <h4>Pasta</h4>
-        <p>10 Restaurant Products</p>
-      </div>
-      <div class="cat-card">
-        <div class="cat-img-wrap">
-          <img src="images/dessert.png" alt="Desserts"/>
-        </div>
-        <h4>Desserts</h4>
-        <p>15 Restaurant Products</p>
-      </div>
+
+    <!-- Replaced by js/render.js on boot; kept as the no-JS fallback. -->
+    <div class="categories-grid" id="categoriesGrid">
+      <div class="cat-card"><span class="cat-img-wrap"><img src="images/pizza.png" alt="" width="400" height="400" loading="lazy" decoding="async"/></span><span class="cat-card__name">Pizza</span></div>
+      <div class="cat-card"><span class="cat-img-wrap"><img src="images/broast.png" alt="" width="400" height="400" loading="lazy" decoding="async"/></span><span class="cat-card__name">Broast</span></div>
+      <div class="cat-card"><span class="cat-img-wrap"><img src="images/chicken.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"/></span><span class="cat-card__name">Chicken</span></div>
+      <div class="cat-card"><span class="cat-img-wrap"><img src="images/burger.jpg" alt="" width="400" height="266" loading="lazy" decoding="async"/></span><span class="cat-card__name">Burgers</span></div>
+      <div class="cat-card"><span class="cat-img-wrap"><img src="images/shakes.jpg" alt="" width="399" height="400" loading="lazy" decoding="async"/></span><span class="cat-card__name">Shakes</span></div>
+      <div class="cat-card"><span class="cat-img-wrap"><img src="images/sandwich.jpg" alt="" width="400" height="225" loading="lazy" decoding="async"/></span><span class="cat-card__name">Sandwiches</span></div>
+      <div class="cat-card"><span class="cat-img-wrap"><img src="images/pasta.jpg" alt="" width="214" height="236" loading="lazy" decoding="async"/></span><span class="cat-card__name">Pasta</span></div>
+      <div class="cat-card"><span class="cat-img-wrap"><img src="images/dessert.jpg" alt="" width="320" height="400" loading="lazy" decoding="async"/></span><span class="cat-card__name">Desserts</span></div>
     </div>
   </section>
 
-  <!-- ───────────── FEATURED RESTAURANTS ───────────── -->
+  <!-- ───────────── RESTAURANTS ───────────── -->
   <section class="restaurants" id="restaurants">
     <div class="section-header">
       <p class="section-eyebrow">TOP RESTAURANTS</p>
       <h2>Most Featured Restaurants</h2>
       <div class="underline"></div>
     </div>
-    <div class="restaurants-grid">
-      <div class="rest-card">
+
+    <div class="filter-bar">
+      <div class="filter-bar__row">
+        <div class="field field--inline field--grow">
+          <label class="sr-only" for="filterKeyword">Search restaurants or dishes</label>
+          <i class="fa fa-magnifying-glass field__icon" aria-hidden="true"></i>
+          <input type="search" id="filterKeyword" placeholder="Search restaurants or dishes…" autocomplete="off"/>
+        </div>
+
+        <div class="field field--inline">
+          <label class="sr-only" for="filterCity">City</label>
+          <select id="filterCity">
+            <option value="">All cities</option>
+            <option>Bangalore</option>
+            <option>Chennai</option>
+            <option>Delhi</option>
+            <option>Hyderabad</option>
+            <option>Mumbai</option>
+          </select>
+        </div>
+
+        <div class="field field--inline">
+          <label class="sr-only" for="sortBy">Sort by</label>
+          <select id="sortBy">
+            <option value="relevance">Recommended</option>
+            <option value="rating">Top rated</option>
+            <option value="eta">Fastest delivery</option>
+            <option value="delivery">Lowest delivery fee</option>
+            <option value="price">Cost: low to high</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-bar__meta">
+        <span class="result-count" id="resultCount" aria-live="polite"></span>
+        <div class="active-filters" id="activeFilters"></div>
+      </div>
+    </div>
+
+    <!-- Replaced by js/render.js on boot; kept as the no-JS fallback. -->
+    <div class="restaurants-grid" id="restaurantsGrid">
+      <article class="rest-card">
         <div class="rest-img-wrap">
-          <img src="images/rest1.jpg" alt="The Burger House"/>
+          <img src="images/rest1.jpg" alt="The Burger House" width="800" height="450" loading="lazy" decoding="async"/>
           <span class="rest-badge"><i class="fa fa-star"></i> 4.8</span>
         </div>
         <div class="rest-info">
           <h4>The Burger House</h4>
-          <p><i class="fa fa-location-dot"></i> Koramangala, Bangalore</p>
-          <div class="rest-meta">
-            <span><i class="fa fa-clock"></i> 25–30 min</span>
-            <span><i class="fa fa-motorcycle"></i> Free Delivery</span>
-          </div>
-          <button class="btn-order">Order Now</button>
+          <p class="rest-loc"><i class="fa fa-location-dot"></i> Koramangala, Bangalore</p>
+          <div class="rest-meta"><span><i class="fa fa-clock"></i> 25–35 min</span></div>
         </div>
-      </div>
-      <div class="rest-card">
+      </article>
+      <article class="rest-card">
         <div class="rest-img-wrap">
-          <img src="images/rest2.jpg" alt="Pizza Palace"/>
+          <img src="images/rest2.jpg" alt="Pizza Palace" width="675" height="337" loading="lazy" decoding="async"/>
           <span class="rest-badge"><i class="fa fa-star"></i> 4.6</span>
         </div>
         <div class="rest-info">
           <h4>Pizza Palace</h4>
-          <p><i class="fa fa-location-dot"></i> Indiranagar, Bangalore</p>
-          <div class="rest-meta">
-            <span><i class="fa fa-clock"></i> 30–40 min</span>
-            <span><i class="fa fa-motorcycle"></i> ₹30 Delivery</span>
-          </div>
-          <button class="btn-order">Order Now</button>
+          <p class="rest-loc"><i class="fa fa-location-dot"></i> Indiranagar, Bangalore</p>
+          <div class="rest-meta"><span><i class="fa fa-clock"></i> 35–45 min</span></div>
         </div>
-      </div>
-      <div class="rest-card">
+      </article>
+      <article class="rest-card">
         <div class="rest-img-wrap">
-          <img src="images/rest3.jpg" alt="Sushi Central"/>
+          <img src="images/rest3.jpg" alt="Sushi Central" width="600" height="541" loading="lazy" decoding="async"/>
           <span class="rest-badge"><i class="fa fa-star"></i> 4.9</span>
         </div>
         <div class="rest-info">
           <h4>Sushi Central</h4>
-          <p><i class="fa fa-location-dot"></i> HSR Layout, Bangalore</p>
-          <div class="rest-meta">
-            <span><i class="fa fa-clock"></i> 20–30 min</span>
-            <span><i class="fa fa-motorcycle"></i> Free Delivery</span>
-          </div>
-          <button class="btn-order">Order Now</button>
+          <p class="rest-loc"><i class="fa fa-location-dot"></i> HSR Layout, Bangalore</p>
+          <div class="rest-meta"><span><i class="fa fa-clock"></i> 20–30 min</span></div>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
@@ -227,83 +264,186 @@
       <div class="underline"></div>
     </div>
     <div class="how-grid">
-      <div class="how-card">
-        <div class="how-icon"><i class="fa fa-magnifying-glass"></i></div>
+      <div class="how-card reveal" style="--i:0">
+        <div class="how-icon"><i class="fa fa-magnifying-glass" aria-hidden="true"></i></div>
         <h4>Search Food</h4>
         <p>Browse hundreds of restaurants and thousands of menu items near you.</p>
       </div>
-      <div class="how-arrow"><i class="fa fa-arrow-right"></i></div>
-      <div class="how-card">
-        <div class="how-icon"><i class="fa fa-cart-shopping"></i></div>
-        <h4>Choose & Order</h4>
+      <div class="how-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+      <div class="how-card reveal" style="--i:1">
+        <div class="how-icon"><i class="fa fa-cart-shopping" aria-hidden="true"></i></div>
+        <h4>Choose &amp; Order</h4>
         <p>Pick your favourite dishes and place your order in just a few taps.</p>
       </div>
-      <div class="how-arrow"><i class="fa fa-arrow-right"></i></div>
-      <div class="how-card">
-        <div class="how-icon"><i class="fa fa-truck-fast"></i></div>
+      <div class="how-arrow" aria-hidden="true"><i class="fa fa-arrow-right"></i></div>
+      <div class="how-card reveal" style="--i:2">
+        <div class="how-icon"><i class="fa fa-truck-fast" aria-hidden="true"></i></div>
         <h4>Fast Delivery</h4>
         <p>Your meal is delivered fresh and hot right to your door in minutes.</p>
       </div>
     </div>
   </section>
 
+  <!-- ───────────── TESTIMONIALS ───────────── -->
+  <section class="testimonials" id="testimonials" tabindex="-1"
+           aria-roledescription="carousel" aria-label="Customer reviews">
+    <div class="section-header">
+      <p class="section-eyebrow">HAPPY CUSTOMERS</p>
+      <h2>What People Say</h2>
+      <div class="underline"></div>
+    </div>
+
+    <div class="carousel">
+      <button class="carousel__nav carousel__nav--prev" type="button"
+              data-carousel-prev aria-label="Previous testimonial">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <div class="carousel__viewport">
+        <ul class="carousel__track" id="testimonialTrack"></ul>
+      </div>
+
+      <button class="carousel__nav carousel__nav--next" type="button"
+              data-carousel-next aria-label="Next testimonial">
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="carousel__dots" id="testimonialDots"></div>
+  </section>
+
   <!-- ───────────── APP DOWNLOAD ───────────── -->
   <section class="app-section">
     <div class="app-content">
-      <p class="section-eyebrow" style="text-align:left;">GET THE APP</p>
+      <p class="section-eyebrow">GET THE APP</p>
       <h2>Download the Crunch App</h2>
       <p>Order food on the go. Available on iOS and Android — track your order live and get exclusive app-only deals.</p>
       <div class="app-btns">
-        <button class="app-btn"><i class="fab fa-apple"></i> App Store</button>
-        <button class="app-btn"><i class="fab fa-google-play"></i> Google Play</button>
+        <button class="app-btn" type="button" data-stub="The App Store link">
+          <i class="fab fa-apple" aria-hidden="true"></i> App Store
+        </button>
+        <button class="app-btn" type="button" data-stub="The Google Play link">
+          <i class="fab fa-google-play" aria-hidden="true"></i> Google Play
+        </button>
       </div>
     </div>
     <div class="app-img">
-      <img src="images/app-mockup.png" alt="Crunch App Mockup"/>
+      <img src="images/app-mockup.png" alt="The Crunch app on a phone"
+           width="577" height="433" loading="lazy" decoding="async"/>
     </div>
   </section>
+
+  </main>
 
   <!-- ───────────── FOOTER ───────────── -->
   <footer class="footer" id="contact">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo-text" style="font-size:1.6rem; font-weight:800; color:#fff; margin-bottom:12px;">🍔 Crunch</div>
+        <div class="footer-logo">🍔 Crunch</div>
         <p>Fresh food delivered fast. Your favourite meals from your favourite restaurants, at your doorstep.</p>
+
+        <form class="newsletter" id="newsletterForm" novalidate>
+          <label class="sr-only" for="newsletterEmail">Email address</label>
+          <div class="newsletter__row">
+            <input type="email" id="newsletterEmail" name="email"
+                   placeholder="you@example.com" autocomplete="email" required/>
+            <button class="btn-primary" type="submit">Subscribe</button>
+          </div>
+          <em class="field__error" hidden></em>
+        </form>
+
         <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Crunch on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Crunch on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Crunch on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Crunch on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
         </div>
       </div>
+
       <div class="footer-col">
         <h5>Quick Links</h5>
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
-        <a href="#">All Restaurants</a>
-        <a href="#">Blog</a>
-        <a href="#">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#how">About Us</a>
+        <a href="#restaurants">All Restaurants</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
       </div>
+
       <div class="footer-col">
         <h5>Categories</h5>
-        <a href="#">Pizza</a>
-        <a href="#">Burgers</a>
-        <a href="#">Pasta</a>
-        <a href="#">Sushi</a>
-        <a href="#">Desserts</a>
+        <a href="#categories">Pizza</a>
+        <a href="#categories">Burgers</a>
+        <a href="#categories">Pasta</a>
+        <a href="#categories">Shakes</a>
+        <a href="#categories">Desserts</a>
       </div>
+
       <div class="footer-col">
         <h5>Contact Us</h5>
-        <p><i class="fa fa-location-dot"></i> 12 MG Road, Bangalore, India</p>
-        <p><i class="fa fa-phone"></i> +91 98765 43210</p>
-        <p><i class="fa fa-envelope"></i> hello@crunchfood.in</p>
+        <p><i class="fa fa-location-dot" aria-hidden="true"></i> 12 MG Road, Bangalore, India</p>
+        <p><i class="fa fa-phone" aria-hidden="true"></i> +91 98765 43210</p>
+        <p><i class="fa fa-envelope" aria-hidden="true"></i> hello@crunchfood.in</p>
       </div>
     </div>
+
     <div class="footer-bottom">
+      <p class="demo-note">
+        <i class="fa fa-circle-info" aria-hidden="true"></i>
+        <span><strong>Demo data.</strong> The restaurants and their signature dishes are real,
+        but ratings, review counts, prices, delivery times and the customer testimonials are
+        illustrative samples invented for this demo — not statements about these businesses.</span>
+      </p>
+
+      <details class="credits">
+        <summary>Photo credits</summary>
+        <p class="credits__intro">
+          Dish photography from
+          <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>,
+          used under the licences shown. Each title links to its source file.
+        </p>
+        <ul class="credits__list" id="creditList"></ul>
+      </details>
+
       <p>© 2025 Crunch. All rights reserved. Made with ❤️ in Bangalore.</p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- ───────────── CART DRAWER ───────────── -->
+  <div class="overlay drawer" id="cartDrawer" hidden>
+    <div class="overlay__backdrop" data-close></div>
+    <aside class="drawer__panel" role="dialog" aria-modal="true"
+           aria-labelledby="cartTitle" data-surface tabindex="-1">
+      <header class="drawer__head">
+        <h3 id="cartTitle">Your Cart</h3>
+        <button class="icon-btn" type="button" data-close aria-label="Close cart">
+          <i class="fa fa-xmark" aria-hidden="true"></i>
+        </button>
+      </header>
+      <div class="drawer__body" id="cartBody"></div>
+      <footer class="drawer__foot" id="cartFoot" hidden></footer>
+    </aside>
+  </div>
+
+  <!-- ───────────── RESTAURANT MENU MODAL ───────────── -->
+  <div class="overlay modal" id="menuModal" hidden>
+    <div class="overlay__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true"
+         aria-labelledby="menuTitle" data-surface tabindex="-1">
+      <button class="modal__close icon-btn" type="button" data-close aria-label="Close menu">
+        <i class="fa fa-xmark" aria-hidden="true"></i>
+      </button>
+      <div class="modal__body" id="menuModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Overlay hosts populated at runtime -->
+  <div class="overlay confirm-overlay" id="confirmDialog" hidden></div>
+  <div class="toast-host" id="toastHost" role="status" aria-live="polite"></div>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
