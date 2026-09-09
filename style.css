@@ -379,7 +379,12 @@ img { max-width: 100%; }
   max-width: 1200px;
   margin: 0 auto;
   padding: 48px 24px;
-  padding-right: 50%;
+  /* Reserve exactly the strip the floating food art occupies. It mirrors the
+     art's own `width: 50%; max-width: 640px` — percentage padding resolves
+     against .hero (the viewport), not this element's capped 1200px, so a plain
+     50% keeps growing past the art on wide screens and needlessly starves the
+     search bar below. */
+  padding-right: min(50%, 640px);
   width: 100%;
 }
 
@@ -414,18 +419,24 @@ img { max-width: 100%; }
   background: var(--surface);
   border-radius: var(--radius);
   overflow: hidden;
-  max-width: 560px;
+  max-width: 600px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .search-field {
   flex: 1;
-  padding: 12px 18px;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
   gap: 3px;
   min-width: 0;
 }
+
+/* The hero's padding-right caps this bar near 576px on desktop, so the two
+   fields have to share a tight budget: the keyword placeholder is the longest
+   string in here and gets the larger share. */
+.search-field--keyword { flex: 1.6; }
+.search-field--location { flex: 1; }
 
 .search-field label {
   font-size: 0.7rem;
@@ -445,7 +456,14 @@ img { max-width: 100%; }
   background: transparent;
   width: 100%;
   min-width: 0;
+  /* Truncate cleanly instead of clipping mid-glyph at awkward widths. */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
+
+/* Leave room for the native dropdown arrow so it never sits over the value. */
+.search-field select { padding-right: 4px; }
 
 .search-field input::placeholder { color: var(--text-muted); }
 
@@ -455,7 +473,7 @@ img { max-width: 100%; }
   background: var(--yellow);
   color: #111;
   border: none;
-  padding: 0 26px;
+  padding: 0 20px;
   font-size: 0.9rem;
   font-weight: 700;
   font-family: inherit;
@@ -738,11 +756,18 @@ img { max-width: 100%; }
   background: var(--surface-3);
 }
 
-.rest-img-wrap img {
+.rest-img-wrap img,
+.rest-img-wrap .storefront,
+.menu-head .storefront {
   width: 100%; height: 100%;
   object-fit: cover;
+  display: block;
   transition: transform 0.4s var(--ease);
 }
+
+/* The drawn shopfronts stand in for restaurants we have no genuine photo of. */
+.menu-head .storefront { aspect-ratio: 21 / 9; height: auto; }
+.rest-card:hover .storefront { transform: scale(1.04); }
 
 .rest-card:hover .rest-img-wrap img { transform: scale(1.06); }
 
@@ -1816,15 +1841,19 @@ img { max-width: 100%; }
   .restaurants-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1.6fr 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
-  .hero-content { padding-right: 42%; }
   .nav-links { gap: 18px; }
   .btn-location__label { display: none; }
   .cat-img-wrap { width: 130px; }
 }
 
-/* Hero stacks before the food image gets too cramped to read behind. */
-@media (max-width: 900px) {
-  .hero { min-height: auto; padding-bottom: 40px; }
+/* Hero stacks before the food image gets too cramped to read behind. Kept at
+   1000px rather than 900: in the 901-1000 band the row layout squeezed the
+   search bar until the location select clipped its own value. */
+@media (max-width: 1000px) {
+  /* The food image is a flex sibling of the copy, so it has to be stacked by
+     the container — making it `position: relative` alone just left it sitting
+     beside the text, squeezing the headline into a narrow column. */
+  .hero { min-height: auto; padding-bottom: 40px; flex-direction: column; justify-content: center; }
   .hero-content { padding-right: 24px; padding-top: 40px; }
   .hero-overlay {
     background: linear-gradient(180deg, rgba(0,0,0,0.86) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.75) 100%);
@@ -1877,6 +1906,7 @@ img { max-width: 100%; }
 @media (max-width: 560px) {
   .categories-grid { grid-template-columns: repeat(2, 1fr); }
   .search-bar { flex-direction: column; max-width: none; }
+  .search-field--keyword, .search-field--location { flex: 1; }
   .search-divider { width: 100%; height: 1px; margin: 0; }
   .btn-search { padding: 14px; justify-content: center; }
   .filter-bar__row { flex-direction: column; }
