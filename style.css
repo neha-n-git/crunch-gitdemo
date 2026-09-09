@@ -399,6 +399,19 @@ img { max-width: 100%; }
      search bar below. */
   padding-right: min(50%, 640px);
   width: 100%;
+  padding-right: 52%;
+  animation: heroFadeIn 1s ease-out;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-eyebrow {
@@ -525,6 +538,7 @@ img { max-width: 100%; }
   50% { transform: translateY(-14px); }
 }
 
+/* ── STATS (Enhanced by Student 2) ── */
 /* ── STATS ─────────────────────────────────────────────────────────── */
 
 .stats {
@@ -1078,6 +1092,8 @@ img { max-width: 100%; }
 /* ── APP SECTION ───────────────────────────────────────────────────── */
 
 .app-section {
+  background: linear-gradient(160deg, #0d0d0d 0%, var(--black) 50%, #1a1400 100%);
+  padding: 90px 24px;
   background: var(--dark-panel);
   padding: 80px 24px;
   display: flex;
@@ -1108,6 +1124,10 @@ img { max-width: 100%; }
 
 .app-btn {
   background: var(--yellow);
+  color: var(--black);
+  border: 2px solid var(--yellow);
+  border-radius: 10px;
+  padding: 13px 26px;
   color: #111;
   border: none;
   border-radius: var(--radius-sm);
@@ -1119,10 +1139,28 @@ img { max-width: 100%; }
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: all 0.3s var(--transition-smooth);
   transition: background 0.2s, transform 0.15s var(--ease);
 }
 
-.app-btn:hover { background: var(--yellow-dark); transform: translateY(-2px); }
+.app-btn:hover {
+  background: var(--yellow-dark);
+  border-color: var(--yellow-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px var(--yellow-glow);
+}
+
+.app-btn.outline {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.app-btn.outline:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  background: rgba(255, 193, 32, 0.08);
+}
 
 .app-img { max-width: 280px; flex-shrink: 0; }
 
@@ -1132,6 +1170,11 @@ img { max-width: 100%; }
   filter: drop-shadow(0 20px 40px rgba(255, 193, 32, 0.22));
 }
 
+/* ── FOOTER (Enhanced by Student 2) ── */
+.footer {
+  background: linear-gradient(180deg, #111111 0%, #0a0a0a 100%);
+  padding: 70px 24px 0;
+}
 /* ── FOOTER ────────────────────────────────────────────────────────── */
 
 .footer { background: var(--footer-bg); padding: 60px 24px 0; }
@@ -1199,8 +1242,48 @@ img { max-width: 100%; }
   transition: background 0.2s, color 0.2s, transform 0.15s var(--ease);
 }
 
+.social-icons a:hover {
+  background: var(--yellow);
+  color: var(--black);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 4px 12px var(--yellow-glow);
+}
 .social-icons a:hover { background: var(--yellow); color: #111; transform: translateY(-3px); }
 
+.footer-col { display: flex; flex-direction: column; gap: 12px; }
+.footer-col h5 {
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-col h5::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--yellow);
+  border-radius: 2px;
+}
+
+.footer-col a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.25s var(--transition-smooth), padding-left 0.25s var(--transition-smooth);
+}
+
+.footer-col a:hover {
+  color: var(--yellow);
+  padding-left: 6px;
+}
+
+.footer-col p { color: rgba(255,255,255,0.55); font-size: 0.85rem; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
 .footer-col { display: flex; flex-direction: column; gap: 10px; }
 .footer-col h5 { color: #fff; font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
 
@@ -1296,7 +1379,7 @@ img { max-width: 100%; }
 .footer-bottom {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 24px 0;
   text-align: center;
   color: rgba(255, 255, 255, 0.38);
   font-size: 0.82rem;

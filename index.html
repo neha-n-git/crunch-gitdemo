@@ -410,42 +410,6 @@
     </div>
   </footer>
 
-  <!-- ───────────── CART DRAWER ───────────── -->
-  <div class="overlay drawer" id="cartDrawer" hidden>
-    <div class="overlay__backdrop" data-close></div>
-    <aside class="drawer__panel" role="dialog" aria-modal="true"
-           aria-labelledby="cartTitle" data-surface tabindex="-1">
-      <header class="drawer__head">
-        <h3 id="cartTitle">Your Cart</h3>
-        <button class="icon-btn" type="button" data-close aria-label="Close cart">
-          <i class="fa fa-xmark" aria-hidden="true"></i>
-        </button>
-      </header>
-      <div class="drawer__body" id="cartBody"></div>
-      <footer class="drawer__foot" id="cartFoot" hidden></footer>
-    </aside>
-  </div>
-
-  <!-- ───────────── RESTAURANT MENU MODAL ───────────── -->
-  <div class="overlay modal" id="menuModal" hidden>
-    <div class="overlay__backdrop" data-close></div>
-    <div class="modal__panel" role="dialog" aria-modal="true"
-         aria-labelledby="menuTitle" data-surface tabindex="-1">
-      <button class="modal__close icon-btn" type="button" data-close aria-label="Close menu">
-        <i class="fa fa-xmark" aria-hidden="true"></i>
-      </button>
-      <div class="modal__body" id="menuModalBody"></div>
-    </div>
-  </div>
-
-  <!-- Overlay hosts populated at runtime -->
-  <div class="overlay confirm-overlay" id="confirmDialog" hidden></div>
-  <div class="toast-host" id="toastHost" role="status" aria-live="polite"></div>
-
-  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
-    <i class="fa fa-arrow-up" aria-hidden="true"></i>
-  </button>
-
-  <script type="module" src="js/main.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
